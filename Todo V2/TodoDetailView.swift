@@ -18,16 +18,18 @@ struct TodoDetailView: View {
                 .padding()
             Button {
                 todo.isCompleted.toggle()
+                //toggle in the literate meaning
             } label: {
                 Text("Mark as \(todo.isCompleted ? "incomplete" : "complete")")
                     .frame(maxWidth: .infinity)
                     .padding()
-                    .background(.teal)
+                    .background(todo.isCompleted ? .red : .green)
                     .foregroundColor(.white)
                     .cornerRadius(10)
                     .padding()
             }
             Spacer()
+            //don't add any more navigation views, it would follow the one in content view
         }
     }
 }
@@ -35,5 +37,6 @@ struct TodoDetailView: View {
 struct TodoDetailView_Previews: PreviewProvider {
     static var previews: some View {
         TodoDetailView(todo: .constant(Todo(title: "Not get hot chocolate")))
+        //basically showing the format of info typed
     }
 }

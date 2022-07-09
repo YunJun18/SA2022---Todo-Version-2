@@ -21,9 +21,12 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List {
+                //we do bindings to ensure that when we click on mark as complete button, the task on main sheet is striked
+                //ForEach to apply new modifiers (ondelete, onmove)
                 ForEach($todos) { $todo in
                     NavigationLink {
                         TodoDetailView(todo: $todo)
+                        //which view to go to [todoDetailView]
                     } label: {
                         HStack {
                             Image(systemName: todo.isCompleted ? "checkmark.circle.fill" : "circle")
@@ -38,14 +41,17 @@ struct ContentView: View {
                 }
                 .onMove { oldOffset, newOffset in
                     todos.move(fromOffsets: oldOffset, toOffset: newOffset)
-                    //under on delete
+                    ///under onDelete; to move tasks around
                 }
             }
             .navigationTitle("Skill Issues")
             .toolbar {
+                //adding the edit
+                //leading : left; trailing : right
                 ToolbarItem(placement: .navigationBarLeading) {
                     EditButton()
                 }
+                //add the plus button
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
                        isSheetGiven = true
@@ -55,6 +61,7 @@ struct ContentView: View {
                 }
             }
         }
+        //this is to go under navigation view
         .sheet(isPresented: $isSheetGiven) {
             NewTodoView(todos: $todos)
         }
