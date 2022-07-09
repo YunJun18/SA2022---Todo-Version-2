@@ -8,6 +8,7 @@
 import Foundation
 
 struct Todo: Identifiable {
+    //identifiable makes this identifiable basically by a uuid
     
     var id = UUID()
     var title: String

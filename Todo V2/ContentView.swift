@@ -34,9 +34,11 @@ struct ContentView: View {
                 }
                 .onDelete { indexSet in
                     todos.remove(atOffsets: indexSet)
+                    //this is under ForEach
                 }
                 .onMove { oldOffset, newOffset in
                     todos.move(fromOffsets: oldOffset, toOffset: newOffset)
+                    //under on delete
                 }
             }
             .navigationTitle("Skill Issues")
